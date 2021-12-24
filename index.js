@@ -17,6 +17,13 @@ document.getElementById("close-without-saving").addEventListener("click", closeW
 document.getElementById("save-document").addEventListener("click", saveDocument);
 document.getElementById("flatten-document").addEventListener("click", flattenDocument);
 document.getElementById("delete-layer").addEventListener("click", deleteTopLayer);
+document.getElementById("flatten-save-close").addEventListener("click", flattenSaveClose);
+
+function flattenSaveClose(){
+  flattenDocument();
+  saveDocument();
+  closeWithoutSaving();
+}
 
 async function deleteTopLayer(){
   const app = require("photoshop").app;
