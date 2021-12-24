@@ -16,21 +16,22 @@ document.getElementById("set-layer-style").addEventListener("click", setLayerSty
 document.getElementById("close-without-saving").addEventListener("click", closeWithoutSaving);
 document.getElementById("save-document").addEventListener("click", saveDocument);
 document.getElementById("flatten-document").addEventListener("click", flattenDocument);
-document.getElementById("delete-layer").addEventListener("click", deleteLayer);
+document.getElementById("delete-layer").addEventListener("click", deleteTopStampLayer);
 
-async function deleteLayer(){
+async function deleteTopStampLayer(){
   const app = require("photoshop").app;
   const cur = app.activeDocument
   const layers1 = cur.layers
-  console.log('layers1')
-  console.log(layers1)
 
-
-//Uncaught Error: Event: select may modify the state of Photoshop. Such events are only allowed from inside a modal scope
-return await require("photoshop").core.executeAsModal(async () => {
-  await layers1 && layers1[0] && layers1[0].delete()
-}, { commandName: "Close Without Saving" });
+  if(layers1.length > 1 && layers1[0].name == getCaptureDate())
+  {
+    //Uncaught Error: Event: select may modify the state of Photoshop. Such events are only allowed from inside a modal scope
+    return await require("photoshop").core.executeAsModal(async () => {
+      await layers1 && layers1[0] && layers1[0].delete()
+    }, { commandName: "Delete Top Stamp Layer" });
+  }
 }
+
 async function flattenDocument(){
   const app = require("photoshop").app;
   const cur = app.activeDocument
@@ -92,17 +93,21 @@ async function createTextByTitle(){
   }
 }
 
-async function creatTextBySize(fontSize){
-  //console.log(fontSize)
-
+function getCaptureDate(){
   const app = require("photoshop").app;
-  const doc = app.activeDocument;
+
   if (app.documents.length == 0) {
     showAlert("Please open at least one document.");
     return;
   }
   const activeDocTitle = app.activeDocument.title;
-  const pictureDate = activeDocTitle.split("-", 1)[0];
+  const captureDate = activeDocTitle.split("-", 1)[0];
+
+  return captureDate;
+}
+
+async function creatTextBySize(fontSize){
+  
   const docSize = gettingDocumentSize();
 
   //fontSize is a STRING
@@ -136,7 +141,7 @@ async function creatTextBySize(fontSize){
   //if there are two layers delete the top layer
 
 
-   const result =await makeTextLayerByDocSize1(pictureDate, layerBounds, fontSize);
+   const result =await makeTextLayerByDocSize1(getCaptureDate(), layerBounds, fontSize);
  // showAlert(result);
 
   if (result[0].message) { // a message in the result means error
@@ -165,7 +170,7 @@ function gettingDocumentSize(){
   const currentDocument = app.activeDocument
   //const layers = currentDocument.activeLayers;
 
-  console.log("CurrentDocument Width:"+ currentDocument.width+ " Height:" + currentDocument.height)
+ // console.log("CurrentDocument Width:"+ currentDocument.width+ " Height:" + currentDocument.height)
  // showAlert("CurrentDocument Width:"+ currentDocument.width+ " Height:" + currentDocument.height);
 
   return {'width': currentDocument.width, 'height': currentDocument.height};
@@ -250,8 +255,8 @@ async function showAlert(message) {
 // We do it with a batchPlay call.
 async function makeTextLayerByDocSize1(theText, layerSize, fontSize) {
   fontSize=fontSize||72;
-  console.log('makeTextLayerByDocSize1');
-  console.log(fontSize)
+  //console.log('makeTextLayerByDocSize1');
+  //console.log(fontSize)
   	const batchCommands = {
 		"_obj": "make",
 		"_target": [
