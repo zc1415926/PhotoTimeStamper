@@ -16,7 +16,18 @@ document.getElementById("set-layer-style").addEventListener("click", setLayerSty
 document.getElementById("close-without-saving").addEventListener("click", closeWithoutSaving);
 document.getElementById("save-document").addEventListener("click", saveDocument);
 document.getElementById("flatten-document").addEventListener("click", flattenDocument);
-document.getElementById("delete-layer").addEventListener("click", deleteTopStampLayer);
+document.getElementById("delete-layer").addEventListener("click", deleteTopLayer);
+
+async function deleteTopLayer(){
+  const app = require("photoshop").app;
+  const cur = app.activeDocument
+  const layers1 = cur.layers
+
+  //Uncaught Error: Event: select may modify the state of Photoshop. Such events are only allowed from inside a modal scope
+  return await require("photoshop").core.executeAsModal(async () => {
+    await layers1 && layers1[0] && layers1[0].delete()
+  }, { commandName: "Delete Top Stamp Layer" });
+}
 
 async function deleteTopStampLayer(){
   const app = require("photoshop").app;
@@ -140,8 +151,8 @@ async function creatTextBySize(fontSize){
 
   //if there are two layers delete the top layer
 
-
-   const result =await makeTextLayerByDocSize1(getCaptureDate(), layerBounds, fontSize);
+  deleteTopStampLayer();
+  const result =await makeTextLayerByDocSize1(getCaptureDate(), layerBounds, fontSize);
  // showAlert(result);
 
   if (result[0].message) { // a message in the result means error
