@@ -146,14 +146,11 @@ async function creatTextBySize(fontSize){
   }
  
   const layerBounds = {...docSize, "top": docSize.height-deltaSize.height, "left": docSize.width-deltaSize.width};
-  //console.log('layerBounds');
-  //console.log(layerBounds)
 
-  //if there are two layers delete the top layer
-
+  //MAIN PROCESS OF THE CODE
   deleteTopStampLayer();
   const result =await makeTextLayerByDocSize1(getCaptureDate(), layerBounds, fontSize);
- // showAlert(result);
+  setLayerStyle();
 
   if (result[0].message) { // a message in the result means error
     showAlert(result[0].message);
@@ -166,14 +163,14 @@ async function creatTextBySize(fontSize){
 }
 
 ///////////
-function showDocWidthHeight(){
-  const app = require("photoshop").app;
-  const currentDocument = app.activeDocument
-  const layers = currentDocument.activeLayers;
+// function showDocWidthHeight(){
+//   const app = require("photoshop").app;
+//   const currentDocument = app.activeDocument
+//   const layers = currentDocument.activeLayers;
 
-console.log("sbb"+currentDocument.width)
-  showAlert("CurrentDocument Width:"+ currentDocument.width+ " Height:" + currentDocument.height);
-}
+// console.log("sbb"+currentDocument.width)
+//   showAlert("CurrentDocument Width:"+ currentDocument.width+ " Height:" + currentDocument.height);
+// }
 
 //////////////////gettingDocumentSize
 function gettingDocumentSize(){
@@ -188,29 +185,29 @@ function gettingDocumentSize(){
 }
 
 
-function showLayerWidthHeight(){
-  const app = require("photoshop").app;
-  const currentDocument = app.activeDocument
-  const layers = currentDocument.activeLayers;
-  const topLayer = layers[0]
-  const { left, top, right, bottom} = topLayer.bounds
+// function showLayerWidthHeight(){
+//   const app = require("photoshop").app;
+//   const currentDocument = app.activeDocument
+//   const layers = currentDocument.activeLayers;
+//   const topLayer = layers[0]
+//   const { left, top, right, bottom} = topLayer.bounds
 
-  console.log("left, top, right, bottom: "+left, top, right, bottom)
-  console.log(JSON.stringify(topLayer.bounds))
-  showAlert("left, top, right, bottom: "+left, top, right, bottom);
-}
+//   console.log("left, top, right, bottom: "+left, top, right, bottom)
+//   console.log(JSON.stringify(topLayer.bounds))
+//   showAlert("left, top, right, bottom: "+left, top, right, bottom);
+// }
 
 //////////////////gettingLayerBounds
-function gettingLayerBounds(){
-  const app = require("photoshop").app;
-  const currentDocument = app.activeDocument
-  const layers = currentDocument.activeLayers;
-  const topLayer = layers[0]
-  //const { left, top, right, bottom} = topLayer.bounds
+// function gettingLayerBounds(){
+//   const app = require("photoshop").app;
+//   const currentDocument = app.activeDocument
+//   const layers = currentDocument.activeLayers;
+//   const topLayer = layers[0]
+//   //const { left, top, right, bottom} = topLayer.bounds
 
-  console.log(JSON.stringify(topLayer.bounds))
-  showAlert("Layer Bounds: " + JSON.stringify(topLayer.bounds));
-}
+//   console.log(JSON.stringify(topLayer.bounds))
+//   showAlert("Layer Bounds: " + JSON.stringify(topLayer.bounds));
+// }
 
 async function closeWithoutSaving(){
   const app = require("photoshop").app;
@@ -225,36 +222,36 @@ async function closeWithoutSaving(){
  
 
 
-async function createLayerFromText() {
-  const mytext = document.getElementById("mytext").value;
-  if (mytext.trim()) {
-    const result = await makeTextLayer(mytext.trim());
-    if (result[0].message) { // a message in the result means error
-      showAlert(result[0].message);
-    }
-    else {
-      const layerID = result[0].layerID;
-      console.log(`after maketextLayer, id = ${layerID}`);
-    }
-  }
-  else {
-    showAlert("Please enter something in the text field first.");
-  }
-}
+// async function createLayerFromText() {
+//   const mytext = document.getElementById("mytext").value;
+//   if (mytext.trim()) {
+//     const result = await makeTextLayer(mytext.trim());
+//     if (result[0].message) { // a message in the result means error
+//       showAlert(result[0].message);
+//     }
+//     else {
+//       const layerID = result[0].layerID;
+//       console.log(`after maketextLayer, id = ${layerID}`);
+//     }
+//   }
+//   else {
+//     showAlert("Please enter something in the text field first.");
+//   }
+// }
 
-async function createLayerFromFile() {
-	const fs = require("uxp").storage.localFileSystem; // always needed to access the filesystem
-	const myFile = await fs.getFileForOpening({ types: ["txt"] });
-    if (!myFile) {
-		showAlert("No file was selected.");
-        return;
-	}
-    const fileContents = await myFile.read();
-    const result = await makeTextLayer(fileContents);
-    if (result[0].message) { // a message in the result means error
-      showAlert(result[0].message);
-    }
- }
+// async function createLayerFromFile() {
+// 	const fs = require("uxp").storage.localFileSystem; // always needed to access the filesystem
+// 	const myFile = await fs.getFileForOpening({ types: ["txt"] });
+//     if (!myFile) {
+// 		showAlert("No file was selected.");
+//         return;
+// 	}
+//     const fileContents = await myFile.read();
+//     const result = await makeTextLayer(fileContents);
+//     if (result[0].message) { // a message in the result means error
+//       showAlert(result[0].message);
+//     }
+//  }
 
 async function showAlert(message) {
   	const app = require('photoshop').app;
