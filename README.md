@@ -1,7 +1,12 @@
-# Starter Photoshop Plugin (Vanilla)
+# PhotoTimeStamper
+最近，要给把娃儿1岁以前的照片洗出来。想一想，还是给每张照片加上拍摄日期，这样可以帮助我们想起这张照片是什么时候拍的。但是选出来的几百张照片我要是一张一张地加文字那真是要累死我了。
 
-This starter plugin is a good place to get started when developing for Photoshop. It does not rely on any frameworks or build steps -- hence the name "Vanilla".
+我找了一下，网上也没有合适的批量加字的软件，或者说手痒了，就是想自己编个程序来玩，由于就有了这个插件的编写。
 
-## Loading in Photoshop
+## 使用方法
+先要在Lightroom里调整照片，导出成YYYY.MM.DD-HH.MM.SS的格式，横线前的日期读取后用作时间戳，横线后的时间防止文件名重复。
 
-You can load this plugin directly in Photoshop by using the UXP Developer Tools application. Once started, click "Add Plugin...", and navigate to the "manifest.json" file in this folder. Then click the ••• button next to the corresponding entry in the developer tools and click "Load". Switch over to Photoshop, and the plugin's panel will be running.
+把一组照片拖到PS里打开，启动本插件。先选择要添加的时间戳字体，再按确定按钮就可以自动保存并关闭当前图片。
+
+## 使用的技术
+本插件使用了Adobe Photoshop UXP相关的技术编写而成，具体的参考文献以后会列在下边，如果可能的话我再写一个简单的教程，方便自己以后再把这段内容捡起来
