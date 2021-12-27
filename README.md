@@ -6,6 +6,10 @@
 ## 使用方法
 先要在Lightroom里调整照片，导出成YYYY.MM.DD-HH.MM.SS的格式，横线前的日期读取后用作时间戳，横线后的时间防止文件名重复。
 
+在PS里打开Preferences->Plugins->Options中，勾选Enable Developer Mode。
+
+在Create Clould Desktop程序中安装Adobe UXP Developer Tool，并在Developer Tool中中单击AddPlugin按钮，选择本项目中的manifest.json，最后在Actions里运行Load或Watch指令加载代码。
+
 把一组照片拖到PS里打开，启动本插件。先选择要添加的时间戳字体，再按确定按钮就可以自动保存并关闭当前图片。
 
 ## 使用的技术
@@ -36,7 +40,7 @@
 
 [Things-You-Need-To-Know Code](https://github.com/undavide/Adobe-UXP/tree/main/Things-You-Need-To-Know)
 
-### BatchPlay
+### Generate BatchPlay command
 [Alchemist Plugin Github](https://github.com/jardicc/alchemist)
 
 ### UI
