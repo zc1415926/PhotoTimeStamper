@@ -10,3 +10,45 @@
 
 ## 使用的技术
 本插件使用了Adobe Photoshop UXP相关的技术编写而成，具体的参考文献以后会列在下边，如果可能的话我再写一个简单的教程，方便自己以后再把这段内容捡起来
+
+
+## 相关资料
+### Official Reference and Guide
+[Getting Started with UXP for Photoshop](https://www.adobe.io/photoshop/uxp/2022/guides/)
+
+[UXP for Adobe Photoshop 2022](https://www.adobe.io/photoshop/uxp/2022/)
+
+[UXP for Photoshop API](https://www.adobe.io/photoshop/uxp/ps_reference/classes/photoshop/)
+
+[UXP for Photoshop API 2022](https://www.adobe.io/photoshop/uxp/2022/ps_reference/classes/action/)
+
+[UXP for Photoshop Quickstart guide](https://www.adobe.io/photoshop/uxp/2022/guides/)
+
+[UXP Reference 2022](https://www.adobe.io/photoshop/uxp/2022/uxp/reference-js/)
+
+[UXP Photoshop Plugin Sample](https://github.com/AdobeDocs/uxp-photoshop-plugin-samples)
+
+[Adobe Photoshop forum](https://forums.creativeclouddeveloper.com/c/photoshop/63)
+
+### Tutorial
+
+[Adobe UXP: Things you need to know!](https://www.davidebarranca.com/development/adobe-uxp-things-you-need-to-know)
+
+[Things-You-Need-To-Know Code](https://github.com/undavide/Adobe-UXP/tree/main/Things-You-Need-To-Know)
+
+### BatchPlay
+[Alchemist Plugin Github](https://github.com/jardicc/alchemist)
+
+### UI
+[Designing a plugin experience](https://www.adobe.io/photoshop/uxp/2022/design/)
+
+[User Interface](https://www.adobe.io/photoshop/uxp/2022/design/user-interface/)
+
+[Meet Spectrum,Adobe’s design system](https://spectrum.adobe.com/)
+
+[Specturm Web Component](https://opensource.adobe.com/spectrum-web-components/components/accordion/)
+
+### The future
+[Photoshop API Changelog](https://developer-stage.adobe.com/photoshop/uxp/2022/ps_reference/changelog/)
+
+[Roadmap](https://trello.com/b/Qag1BazI/photoshop-extensibility-roadmap)
