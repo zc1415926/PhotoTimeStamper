@@ -332,75 +332,85 @@ async function makeTextLayerByDocSize1(theText, layerSize, fontSize) {
 
 async function setLayerStyle() {
   const batchCommands = {
-    _obj: "set",
-    _target: [
+    "_obj": "set",
+    "_target": [
        {
-          _ref: "property",
-          _property: "layerEffects"
+          "_ref": "property",
+          "_property": "layerEffects"
        },
        {
-          _ref: "layer",
-          _enum: "ordinal",
-          _value: "targetEnum"
+          "_ref": "layer",
+          "_enum": "ordinal",
+          "_value": "targetEnum"
        }
     ],
-    to: {
-       _obj: "layerEffects",
-       scale: {
-          _unit: "percentUnit",
-          _value: 416.6666666666667
+    "to": {
+       "_obj": "layerEffects",
+       "scale": {
+          "_unit": "percentUnit",
+          "_value": 333.3333333333333
        },
-       dropShadow: {
-          _obj: "dropShadow",
-          enabled: true,
-          present: true,
-          showInDialog: true,
-          mode: {
-             _enum: "blendMode",
-             _value: "multiply"
+       "dropShadow": {
+          "_obj": "dropShadow",
+          "enabled": true,
+          "present": true,
+          "showInDialog": true,
+          "mode": {
+             "_enum": "blendMode",
+             "_value": "multiply"
           },
-          color: {
-             _obj: "RGBColor",
-             red: 0,
-             grain: 0,
-             blue: 0
+          "color": {
+             "_obj": "RGBColor",
+             "red": 0,
+             "grain": 0,
+             "blue": 0
           },
-          opacity: {
-             _unit: "percentUnit",
-             _value: 41
+          "opacity": {
+             "_unit": "percentUnit",
+             "_value": 51
           },
-          useGlobalAngle: true,
-          localLightingAngle: {
-             _unit: "angleUnit",
-             _value: 90
+          "useGlobalAngle": true,
+          "localLightingAngle": {
+             "_unit": "angleUnit",
+             "_value": 90
           },
-          distance: {
-             _unit: "pixelsUnit",
-             _value: 27
+          "distance": {
+             "_unit": "pixelsUnit",
+             "_value": 29
           },
-          chokeMatte: {
-             _unit: "pixelsUnit",
-             _value: 16
+          "chokeMatte": {
+             "_unit": "pixelsUnit",
+             "_value": 16
           },
-          blur: {
-             _unit: "pixelsUnit",
-             _value: 46
+          "blur": {
+             "_unit": "pixelsUnit",
+             "_value": 37
           },
-          noise: {
-             _unit: "percentUnit",
-             _value: 0
+          "noise": {
+             "_unit": "percentUnit",
+             "_value": 0
           },
-          antiAlias: false,
-          transferSpec: {
-             _obj: "shapeCurveType",
-             name: "线性"
+          "antiAlias": false,
+          "transferSpec": {
+             "_obj": "shapeCurveType",
+             "name": "线性",
+             "curve": [
+                {
+                   "_obj": "curvePoint",
+                   "horizontal": 0,
+                   "vertical": 0
+                },
+                {
+                   "_obj": "curvePoint",
+                   "horizontal": 255,
+                   "vertical": 255
+                }
+             ]
           },
-          layerConceals: true
+          "layerConceals": true
        }
     },
-    _options: {
-       dialogOptions: "dontDisplay"
-    }
+    "_isCommand": true
  };
 
   return await require("photoshop").core.executeAsModal(async () => {
