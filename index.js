@@ -9,6 +9,8 @@ document.getElementById("create-text-by-title-48").addEventListener("click", ()=
 document.getElementById("create-text-by-title-60").addEventListener("click", ()=>creatTextBySize(60));
 document.getElementById("create-text-by-title-72").addEventListener("click", ()=>creatTextBySize(72));
 document.getElementById("create-text-by-title-100").addEventListener("click", ()=>creatTextBySize(100));
+document.getElementById("create-text-by-title-120").addEventListener("click", ()=>creatTextBySize(120));
+document.getElementById("create-text-by-title-150").addEventListener("click", ()=>creatTextBySize(150));
 document.getElementById("set-layer-style").addEventListener("click", setLayerStyle);
 //document.getElementById("getting-document-size").addEventListener("click", gettingDocumentSize);
 //document.getElementById("show-layer-width-height").addEventListener("click", showLayerWidthHeight);
@@ -18,6 +20,22 @@ document.getElementById("save-document").addEventListener("click", saveDocument)
 document.getElementById("flatten-document").addEventListener("click", flattenDocument);
 document.getElementById("delete-layer").addEventListener("click", deleteTopLayer);
 document.getElementById("flatten-save-close").addEventListener("click", flattenSaveClose);
+
+//调整右下方边距Slider相关的代码在这里
+let widthScaleFactor = 1.4;
+let heightScaleFactor = 2.8;
+
+document.querySelector("#rightDistanceSlider").addEventListener("input", evt => {
+  console.log(`New value: ${evt.target.value}`);
+  widthScaleFactor = evt.target.value / 100;
+})
+
+document.querySelector("#bottomDistanceSlider").addEventListener("input", evt => {
+  console.log(`New value: ${evt.target.value}`);
+  heightScaleFactor = evt.target.value / 100;
+})
+//---------------------------------
+
 
 function flattenSaveClose(){
   flattenDocument();
@@ -129,29 +147,73 @@ async function creatTextBySize(fontSize){
   const docSize = gettingDocumentSize();
 
   //fontSize is a STRING
-  const deltaSize = {"height": 190, "width": 840};
+  //设置要添加的文字图层的宽和高，这里的值是在设置好文字内容以后一点一点试出来的
+  const deltaSize = {"height": 50, "width": 200};
 
-  if(fontSize == "48"){
-    deltaSize.width = 840;
-    deltaSize.height = 190;
+  /* if(fontSize == "36"){
+    deltaSize.width = 250;
+    deltaSize.height = 50;
+  }
+  else if(fontSize == "48"){
+    deltaSize.width = 340;
+    deltaSize.height = 60;
   }
   else if(fontSize == "60"){
-    deltaSize.width = 1030;
-    deltaSize.height = 230;
+    deltaSize.width = 410;
+    deltaSize.height = 70;
   }
   else if(fontSize == "72"){
-    deltaSize.width = 1236;
-    deltaSize.height = 256;
+    deltaSize.width = 480;
+    deltaSize.height = 80;
   }
   else if(fontSize == "100"){
-    deltaSize.width = 1690;
-    deltaSize.height = 320;
+    deltaSize.width = 660;
+    deltaSize.height = 110;
   }
-  else if(fontSize == "36"){
-    deltaSize.width = 625;
-    deltaSize.height = 125;
+  else if(fontSize == "120"){
+    deltaSize.width = 800;
+    deltaSize.height = 130;
+  } 
+  else if(fontSize == "150"){
+    deltaSize.width = 1000;
+    deltaSize.height = 150;
+  }  */
+  
+  
+
+ // const widthScaleFactor = 1.4;
+ // const heightScaleFactor = 2.8;
+
+  if(fontSize == "36"){
+    deltaSize.width = 250 * widthScaleFactor;
+    deltaSize.height = 50 * heightScaleFactor;
   }
- 
+  else if(fontSize == "48"){
+    deltaSize.width = 340 * widthScaleFactor;
+    deltaSize.height = 60 * heightScaleFactor;
+  }
+  else if(fontSize == "60"){
+    deltaSize.width = 410 * widthScaleFactor;
+    deltaSize.height = 70 * heightScaleFactor;
+  }
+  else if(fontSize == "72"){
+    deltaSize.width = 480 * widthScaleFactor;
+    deltaSize.height = 80 * heightScaleFactor;
+  }
+  else if(fontSize == "100"){
+    deltaSize.width = 660 * widthScaleFactor;
+    deltaSize.height = 110 * heightScaleFactor;
+  }
+  else if(fontSize == "120"){
+    deltaSize.width = 800 * widthScaleFactor;
+    deltaSize.height = 130 * heightScaleFactor;
+  } 
+  else if(fontSize == "150"){
+    deltaSize.width = 1000 * widthScaleFactor;
+    deltaSize.height = 150 * heightScaleFactor;
+  } 
+
+
   const layerBounds = {...docSize, "top": docSize.height-deltaSize.height, "left": docSize.width-deltaSize.width};
 
   //MAIN PROCESS OF THE CODE

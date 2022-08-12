@@ -6,6 +6,7 @@
 <style>
   body {
     margin: 10px;
+    font-family: "Microsoft YaHei";
   }
   .wide-text {
     width: 100%;
@@ -52,6 +53,18 @@
       <sp-action-button id="getting-document-size" size="s">Getting Document Size</sp-action-button>
       <sp-action-button id="getting-layer-bounds" size="s">Getting Layer Bounds</sp-action-button>
     </sp-action-group> -->
+
+    <h3 class="spectrum-Heading spectrum-Heading--sizeXS">调整右下方边距</h3>
+    <sp-divider size="m"></sp-divider>
+    <sp-action-group>
+      <sp-slider id="rightDistanceSlider" min="100" max="300" value="140">
+        <sp-label slot="label">→ 文字右边距 →</sp-label>
+      </sp-slider>
+      <sp-slider id="bottomDistanceSlider" min="200" max="500" value="280">
+        <sp-label slot="label">↓ 文字下边距 ↓</sp-label>
+      </sp-slider>
+    </sp-action-group>
+
     <sp-action-group>
       <sp-field-label for="standard">Add Text by Font Size</sp-field-label>
       <sp-action-button id="create-text-by-title-36" size="s">36</sp-action-button>
@@ -59,15 +72,18 @@
       <sp-action-button id="create-text-by-title-60" size="s">60</sp-action-button>
       <sp-action-button id="create-text-by-title-72" size="s">72</sp-action-button>
       <sp-action-button id="create-text-by-title-100" size="s">100</sp-action-button>
+      <sp-action-button id="create-text-by-title-120" size="s">120</sp-action-button>
+      <sp-action-button id="create-text-by-title-150" size="s">150</sp-action-button>
     </sp-action-group>
     <sp-action-group>
       <sp-field-label for="standard">Confirmation</sp-field-label>
-      <sp-action-button id="flatten-save-close" size="s">Flatten, Save, Close</sp-action-button>
+      <sp-action-button id="delete-layer" size="s">Cancell, Delete top layer</sp-action-button>
+      <sp-action-button id="flatten-save-close" size="s">OK, Flatten, save, close</sp-action-button>
     </sp-action-group>
     <sp-heading>Optional Buttons</sp-heading>
     <sp-action-group>
       <sp-field-label for="standard">Layer Actions</sp-field-label>
-      <sp-action-button id="delete-layer" size="s">Delete Top Layer</sp-action-button>
+
       <sp-action-button id="set-layer-style" size="s">Set Layer Style</sp-action-button>
       <sp-action-button id="flatten-document" size="s">Flatten</sp-action-button>
     </sp-action-group>
